@@ -10,6 +10,9 @@ import (
 )
 
 func AddUser(u *User) error {
+
+	return errors.New("not yet implemented")
+
 	var err error
 
 	if u.Name == "" {
@@ -31,16 +34,6 @@ func AddUser(u *User) error {
 
 	if u.Group == "" {
 		u.Group = u.Name
-	}
-
-	var _, groupError = user.LookupGroup(u.Group)
-	if groupError == nil {
-		//createGroup
-	}
-
-	var passwdErr = saveToPasswd(u)
-	if passwdErr != nil {
-		return passwdErr
 	}
 
 	return err

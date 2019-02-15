@@ -2,26 +2,14 @@ package user
 
 import (
 	"bufio"
-	"errors"
 	"os"
 	osuser "os/user"
 	"strconv"
 	"strings"
 )
 
-func GetUser(name string) (User, error) {
-	var users = GetAllUsers()
-	var returnUser User
-
-	for i := 0; i < len(users); i++ {
-		var user = users[i]
-		if user.Name == name {
-			return user, nil
-		}
-	}
-
-	return returnUser, errors.New("user " + name + " not found")
-
+func GetUser(name string) (*osuser.User, error) {
+	return osuser.Lookup(name)
 }
 
 func GetAllUsers() map[int]User {
